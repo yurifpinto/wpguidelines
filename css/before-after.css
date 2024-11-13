@@ -1,0 +1,98 @@
+.before-after-comparison {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.comparison-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.before-image, .after-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.before-image img, .after-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.comparison-slider {
+    position: absolute;
+    background: #ffffff;
+}
+
+/* Horizontal split styles */
+.split-horizontal .before-image {
+    clip-path: inset(0 50% 0 0);
+}
+
+.split-horizontal .comparison-slider {
+    cursor: ew-resize;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+}
+
+/* Vertical split styles */
+.split-vertical .before-image {
+    clip-path: inset(0 0 50% 0);
+}
+
+.split-vertical .comparison-slider {
+    cursor: ns-resize;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.slider-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Handle positioning for different split directions */
+.split-horizontal .slider-handle {
+    transform: translate(-50%, -50%);
+}
+
+.split-vertical .slider-handle {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+svg.before-after-slider-icon {
+    user-select: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: bevel;
+    stroke-width: 1px;
+}
+
+/* .split-vertical svg.before-after-slider-icon {
+    transform: rotate(180deg);
+} */

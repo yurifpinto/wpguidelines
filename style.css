@@ -1,0 +1,267 @@
+/**
+ * Theme Name:        WP Brand Guidelines
+ * Description:       ...
+ * Version:           1.0.0
+ * Author:            Yuri Fidélis
+ * Author URI:        https://yurifidelis.com
+ * Tags:              block-patterns, full-site-editing
+ * Text Domain:       wpguidelines
+ * Template:   twentytwentyfour
+ */
+
+/* Group with full page width background */
+ .page-template-page-with-sidebar .wp-block-group.alignfull.has-background {
+    /* position: relative; */
+    z-index: 1;
+    margin-left: -100vw;
+    margin-right: -100vw;
+    padding-left: 100vw;
+    padding-right: 100vw;
+}
+.page {
+    overflow-x: hidden;
+}
+
+/* Fixed sidebar styles */
+.wp-block-group.is-position-sticky:not(.has-background):has(.guidelines-toc) {
+    color: white;
+    mix-blend-mode: difference;
+}
+
+/* Handle images and icons that shouldn't be inverted */
+.page-template-page-with-sidebar .wp-block-column .wp-block-group.is-position-sticky img,
+.page-template-page-with-sidebar .wp-block-column .wp-block-group.is-position-sticky svg {
+    mix-blend-mode: initial;
+}
+
+/* Media with text block */
+.wp-block-media-text.has-media-on-the-right > .wp-block-media-text__content {
+    padding-left: 0;
+}
+
+/* Table of contents block */
+.guidelines-toc {
+    margin: 2rem 0;
+}
+
+.guidelines-toc .toc-toggle {
+    display: none; /* Hidden by default on desktop */
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.guidelines-toc .toggle-icon {
+    float: right;
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.guidelines-toc .toggle-icon::before,
+.guidelines-toc .toggle-icon::after {
+    content: '';
+    position: absolute;
+    background-color: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.guidelines-toc .toggle-icon::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.guidelines-toc .toggle-icon::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.guidelines-toc .toc-toggle[aria-expanded="true"] .toggle-icon::after {
+    transform: translateX(-50%) rotate(90deg);
+}
+
+.guidelines-toc nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.guidelines-toc .toc-item {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: 0.5rem;
+    position: relative; /* For absolute positioning of circle */
+    transition: all 0.2s ease;
+}
+
+/* Circle indicator */
+.guidelines-toc:not(.is-horizontal) .toc-item.level-1::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px; /* Size of circle */
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s ease;
+}
+
+/* Show circle on active state */
+.guidelines-toc .toc-item.level-1.active::before {
+    opacity: 0.5;
+}
+
+/* Horizontal layout styles */
+@media (min-width: 768px) {
+    .guidelines-toc.is-horizontal nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .guidelines-toc.is-horizontal .toc-item {
+        border-left: none;
+        border-bottom: 1px solid transparent;
+        white-space: nowrap;
+    }
+    
+    .guidelines-toc.is-horizontal .toc-item:hover,
+    .guidelines-toc.is-horizontal .toc-item.active {
+        border-bottom-color: currentColor;
+    }
+
+    .wp-block-group.is-position-sticky:has(.guidelines-toc.is-horizontal) {
+        z-index: 2;
+    }
+}
+
+.guidelines-toc .toc-item:not(.level-1) {
+    line-height: 1rem;
+    color: --wp--preset--color--contrast-2;
+}
+
+/* Remove the previous hover state */
+.guidelines-toc .toc-item:hover {
+    background: transparent; /* Remove background hover effect */
+}
+
+.guidelines-toc .toc-item:hover,
+.guidelines-toc .toc-item.active,
+.guidelines-toc .toc-item.secondary-active {
+    border-left-color: currentColor;
+    font-weight: bold;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+    .guidelines-toc .toc-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        width: 100%;
+        background: none;
+        border: none;
+        color: currentColor;
+    }
+
+    .guidelines-toc .toggle-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Space between text and icon */
+    }
+
+    .guidelines-toc .toggle-text {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .guidelines-toc .toc-content {
+        display: none;
+        margin-top: 1rem;
+    }
+
+    .guidelines-toc .toc-toggle[aria-expanded="true"] + .toc-content {
+        display: flex;
+    }
+}
+
+ /* Hide "Menu" text on desktop if needed */
+ @media (min-width: 769px) {
+    .guidelines-toc .toggle-text {
+        display: none;
+    }
+}
+
+/* Color Swatches */
+.guidelines-color-swatch {
+    display: flex;
+    justify-content: space-between;
+    min-height: 7.5rem;
+}
+
+.guidelines-color-swatch .wp-block-heading {
+    flex-basis: 40%;
+}
+
+.guidelines-color-swatch .color-values {
+    flex-basis: 60%;
+}
+
+@media (min-width: 769px) {
+    .guidelines-color-swatch {
+        aspect-ratio: 1;
+        flex-direction: column;
+    }
+
+    .guidelines-color-swatch .wp-block-heading,
+    .guidelines-color-swatch .color-values {
+        flex-basis: unset;
+    }
+}
+
+/* Header anchor on titles */
+.header-anchor-icon:hover {
+    opacity: 1;
+}
+
+/* Anchor icon styles */
+.anchor-link {
+    position: relative;
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    vertical-align: middle;
+    opacity: 0;
+    text-decoration: none;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.anchor-link svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+    opacity: 1;
+}
