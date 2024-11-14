@@ -1,3 +1,5 @@
+/* translators: This is a JavaScript file containing translatable strings */
+
 wp.domReady(function() {
     const { registerBlockType } = wp.blocks;
     const { createElement: el } = wp.element;
@@ -32,9 +34,9 @@ wp.domReady(function() {
                     //Inspector controls
                     el( InspectorControls, null,
                         el( PanelBody,
-                            { title: 'TOC Settings' },
+                            { title: __( 'TOC Settings', 'wpguidelines' ) },
                             el(ToggleControl, {
-                                label: 'Horizontal Layout',
+                                label: __( 'Horizontal Layout', 'wpguidelines' ),
                                 checked: isHorizontal,
                                 onChange: (value) => {
                                     setAttributes({
@@ -44,7 +46,7 @@ wp.domReady(function() {
                                 }
                             }),
                             !isHorizontal && el( RangeControl, {
-                                label: 'Heading Levels',
+                                label: __( 'Heading Levels', 'wpguidelines' ),
                                 value: maxLevel,
                                 onChange: (value) => setAttributes({ maxLevel: value }),
                                 min: 1,
@@ -52,9 +54,9 @@ wp.domReady(function() {
                             })
                         )
                     ),
-                    el('h2', { className: 'toc-title' }, 'Table of Contents'),
+                    el('h2', { className: 'toc-title' }, __( 'Table of Contents', 'wpguidelines' )),
                     el('div', {className: 'toc-preview-message' }, 
-                        'Table of contents will be generated automatically'
+                        __( 'Table of contents will be generated automatically', 'wpguidelines' )
                     )
                 ]
             );

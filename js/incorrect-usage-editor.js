@@ -1,13 +1,17 @@
+/* translators: This is a JavaScript file containing translatable strings */
+
 wp.domReady(function () {
+    const { __ } = wp.i18n;
+
     // Register custom styles
     wp.blocks.registerBlockStyle('core/image', {
         name: 'incorrect-x',
-        label: 'Incorrect (X)'
+        label: __( 'Incorrect (X)', 'wpguidelines' )
     });
 
     wp.blocks.registerBlockStyle('core/image', {
         name: 'incorrect-line',
-        label: 'Incorrect (Line)'
+        label: __( 'Incorrect (Line)', 'wpguidelines' )
     });
 
     // Add custom attributes to image block
@@ -103,7 +107,7 @@ wp.domReady(function () {
                     { group: "styles" },
                     wp.element.createElement(
                         wp.components.PanelBody,
-                        { title: 'Incorrect Usage Style', initialOpen: true },
+                        { title: __( 'Incorrect Usage Style', 'wpguidelines' ), initialOpen: true },
                         // Color Picker
                         wp.element.createElement(
                             'div',
@@ -111,7 +115,7 @@ wp.domReady(function () {
                             wp.element.createElement(
                                 'label',
                                 null,
-                                'Line Color'
+                                __( 'Line Color', 'wpguidelines' )
                             ),
                             wp.element.createElement(
                                 wp.components.ColorPicker,
@@ -127,7 +131,7 @@ wp.domReady(function () {
                         wp.element.createElement(
                             wp.components.RangeControl,
                             {
-                                label: 'Line Thickness',
+                                label: __( 'Line Thickness', 'wpguidelines' ),
                                 value: props.attributes.incorrectLineThickness,
                                 onChange: function(value) {
                                     props.setAttributes({ incorrectLineThickness: value });
@@ -140,7 +144,7 @@ wp.domReady(function () {
                         wp.element.createElement(
                             wp.components.RangeControl,
                             {
-                                label: 'Line Opacity',
+                                label: __( 'Line Opacity', 'wpguidelines' ),
                                 value: props.attributes.incorrectLineOpacity,
                                 onChange: function(value) {
                                     props.setAttributes({ incorrectLineOpacity: value });

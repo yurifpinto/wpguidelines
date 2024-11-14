@@ -1,11 +1,14 @@
+/* translators: This is a JavaScript file containing translatable strings */
+
 wp.domReady(function() {
     const { registerBlockType } = wp.blocks;
     const { MediaUpload, InspectorControls } = wp.blockEditor;
     const { Button, PanelBody, RangeControl, SelectControl } = wp.components;
     const { createElement: el } = wp.element;
+    const { __ } = wp.i18n;
 
     registerBlockType('guidelines/before-after', {
-        title: 'Image Comparison',
+        title: __( 'Image Comparison', 'wpguidelines' ),
         icon: 'image-flip-horizontal',
         category: 'media',
         attributes: {
@@ -52,21 +55,21 @@ wp.domReady(function() {
                 // Inspector Controls
                 [ el(InspectorControls, null,
                     el(PanelBody,
-                        { title: 'Image Settings' },
+                        { title: __( 'Image Settings', 'wpguidelines' ) },
                         el('div', { className: 'editor-image-size-note' },
-                            'Note: Images should have the same dimensions for best results'
+                            __( 'Note: Images should have the same dimensions for best results', 'wpguidelines' )
                         ),
                         el(SelectControl, {
-                            label: 'Split Direction',
+                            label: __( 'Split Direction', 'wpguidelines' ),
                             value: splitDirection,
                             options: [
-                                { label: 'Horizontal Split', value: 'horizontal' },
-                                { label: 'Vertical Split', value: 'vertical' }
+                                { label: __( 'Horizontal Split', 'wpguidelines' ), value: 'horizontal' },
+                                { label: __( 'Vertical Split', 'wpguidelines' ), value: 'vertical' }
                             ],
                             onChange: (value) => setAttributes({ splitDirection: value })
                         }),
                         el(RangeControl, {
-                            label: 'Border Radius',
+                            label: __( 'Border Radius', 'wpguidelines' ),
                             value: borderRadius,
                             onChange: (value) => setAttributes({ borderRadius: value }),
                             min: 0,
@@ -106,7 +109,7 @@ wp.domReady(function() {
                                                 src: beforeImage.url,
                                                 alt: beforeImage.alt
                                             }) :
-                                            'Select \'Before\' Image'
+                                            __( 'Select \'Before\' Image', 'wpguidelines' )
                                         );
                                     }
                                 })
@@ -137,7 +140,7 @@ wp.domReady(function() {
                                                 src: afterImage.url,
                                                 alt: afterImage.alt
                                             }) :
-                                            'Select \'After\' Image'
+                                            __( 'Select \'After\' Image', 'wpguidelines' )
                                         );
                                     }
                                 })

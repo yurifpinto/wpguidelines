@@ -7,28 +7,72 @@
  * @package wpguidelines
  */
 
+ // Load theme translations
+function wpguidelines_load_theme_textdomain() {
+    load_child_theme_textdomain( 'wpguidelines', get_stylesheet_directory() . '/languages' );
+}
+add_action( 'after_setup_theme', 'wpguidelines_load_theme_textdomain' );
 
+// Guidelines category for block patterns
+function wpguidelines_register_pattern_categories() {
+	register_block_pattern_category( 'wpguidelines/guidelines', array( 
+		'label'       => __( 'Guidelines', 'wpguidelines' ),
+		'description' => __( 'Custom patterns for WP Guidelines', 'wpguidelines' )
+	) );
+}
+add_action( 'init', 'wpguidelines_register_pattern_categories' );
+
+// Child theme styles
 function wpguidelines_enqueue_styles() {
-	wp_enqueue_style( 
-		'wpguidelines-style', 
-		get_stylesheet_uri()
-	);
+	wp_enqueue_style( 'wpguidelines-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'wpguidelines_enqueue_styles' );
 
-// Theme custom scripts
+// Child theme custom scripts
 function wpguidelines_enqueue_scripts() {
-    wp_enqueue_script( 'wpguidelines-custom-scripts', get_stylesheet_directory_uri() . '/js/script.js', array(), '1.0.0', true );
+    wp_enqueue_script( 'wpguidelines-custom-scripts', get_stylesheet_directory_uri() . '/js/script.js', [], '1.0.0', true );
 }
-add_action('wp_enqueue_scripts', 'wpguidelines_enqueue_scripts');
+add_action( 'wp_enqueue_scripts', 'wpguidelines_enqueue_scripts' );
 
-// Header with anchor block
+ /*
+ * Custom block styles
+ */
+function wpguidelines_register_block_styles() {
+    register_block_style( 'core/image', array(
+        'name'  => 'incorrect-x',
+        'label' => __( 'Incorrect (X)', 'wpguidelines' )
+    ) );
+
+    register_block_style( 'core/image', array(
+        'name'  => 'incorrect-line',
+        'label' => __( 'Incorrect (Line)', 'wpguidelines' )
+    ) );
+
+    register_block_style( 'core/image', array(
+        'name'  => 'correct',
+        'label' => __( 'Correct (Check)', 'wpguidelines' )
+    ) );
+}
+add_action( 'init', 'wpguidelines_register_block_styles' );
+
+function wpguidelines_enqueue_block_styles() {
+    wp_enqueue_block_style( 'core/image', array(
+        'handle' => 'wpguidelines-block-image',
+        'src'    => get_stylesheet_directory_uri() . '/blocks/core-image.css',
+        'path'   => get_stylesheet_directory_uri().  '/blocks/core-image.css'
+    ) );
+}
+add_action( 'after_setup_theme', 'wpguidelines_enqueue_block_styles' );
+
+/*
+ * Custom block: Header tags with anchors
+ */
 function wpguidelines_enqueue_header_anchor_script() {
     if (wp_cache_get('has_toc', 'wpguidelines') === true) {
         wp_enqueue_script(
             'header-anchor',
             get_stylesheet_directory_uri() . '/js/header-anchor.js',
-            array('wp-blocks', 'wp-compose', 'wp-element', 'wp-editor', 'wp-components', 'wp-hooks', 'wp-data', 'wp-dom-ready'),
+            array( 'wp-blocks', 'wp-compose', 'wp-element', 'wp-editor', 'wp-components', 'wp-hooks', 'wp-data', 'wp-dom-ready', ),
             '1.0',
             true
         );
@@ -36,14 +80,13 @@ function wpguidelines_enqueue_header_anchor_script() {
 }
 add_action('wp_enqueue_scripts', 'wpguidelines_enqueue_header_anchor_script');
 
-
 /*
- * Table of Contents block
+ * Custom block: Table of Contents
  */
 function register_toc_block() {
 	wp_register_script( 'guidelines-toc-block',
         get_stylesheet_directory_uri() . '/js/toc-block.js',
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data')
+        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-i18n' )
     );
 
 	register_block_type('guidelines/toc', array(
@@ -56,6 +99,8 @@ function register_toc_block() {
             )
         )
     ));
+
+    wp_set_script_translations( 'guidelines-toc-block', 'wpguidelines' );
 }
 add_action('init', 'register_toc_block');
 
@@ -126,18 +171,15 @@ function render_toc_block($attributes) {
     
     return $output;
 }
-/*
- * END Table of Contents block
- */
 
  /*
- * Before/after images block
+ * Custom block: Before/after image
  */
 function wpguidelines_register_before_after_block() {
     wp_register_script(
         'before-after-block-editor',
         get_stylesheet_directory_uri() . '/js/before-after-block.js',
-        ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components']
+        ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n']
     );
 
     wp_register_style(
@@ -160,6 +202,8 @@ function wpguidelines_register_before_after_block() {
             ]
         ]
     ]);
+
+    wp_set_script_translations( 'before-after-block-editor', 'wpguidelines' );
 }
 add_action( 'init', 'wpguidelines_register_before_after_block' );
 
@@ -211,54 +255,13 @@ function wpguidelines_enqueue_before_after_assets() {
     if (has_block('guidelines/before-after')) {
         wp_enqueue_style(
             'before-after-comparison',
-            get_stylesheet_directory_uri() . '/css/before-after.css',
-            [],
-            '1.0'
+            get_stylesheet_directory_uri() . '/css/before-after.css', [], '1.0'
         );
 
         wp_enqueue_script(
             'before-after-comparison',
-            get_stylesheet_directory_uri() . '/js/before-after.js',
-            [],
-            '1.0',
-            true
+            get_stylesheet_directory_uri() . '/js/before-after.js', [], '1.0', true
         );
     }
 }
 add_action('wp_enqueue_scripts', 'wpguidelines_enqueue_before_after_assets');
- /*
- * END Before/after images block
- */
-
- /*
- * Custom block styles
- */
-function wpguidelines_register_block_styles() {
-    register_block_style( 'core/image', array(
-        'name'  => 'incorrect-x',
-        'label' => __( 'Incorrect (X)', 'wpguidelines' )
-    ) );
-
-    register_block_style( 'core/image', array(
-        'name'  => 'incorrect-line',
-        'label' => __( 'Incorrect (Line)', 'wpguidelines' )
-    ) );
-
-    register_block_style( 'core/image', array(
-        'name'  => 'correct',
-        'label' => __( 'Correct (Check)', 'wpguidelines' )
-    ) );
-}
-add_action( 'init', 'wpguidelines_register_block_styles' );
-
-function wpguidelines_enqueue_block_styles() {
-    wp_enqueue_block_style( 'core/image', array(
-        'handle' => 'wpguidelines-block-image',
-        'src'    => get_stylesheet_directory_uri() . '/blocks/core-image.css',
-        'path'   => get_stylesheet_directory_uri().  '/blocks/core-image.css'
-    ) );
-}
-add_action( 'after_setup_theme', 'wpguidelines_enqueue_block_styles' );
-/*
- * END Custom block styles
- */
