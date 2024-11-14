@@ -1,0 +1,122 @@
+# Copyright (C) 2024 Yuri Fidélis
+# This file is distributed under the same license as the WP Brand Guidelines theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Brand Guidelines 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wpguidelines\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-11-14T18:25:18+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: wpguidelines\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "WP Brand Guidelines"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "..."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Yuri Fidélis"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://yurifidelis.com"
+msgstr ""
+
+#: functions.php:240
+#: js/incorrect-usage-editor.js:9
+msgid "Incorrect (X)"
+msgstr ""
+
+#: functions.php:245
+#: js/incorrect-usage-editor.js:14
+msgid "Incorrect (Line)"
+msgstr ""
+
+#: functions.php:250
+msgid "Correct (Check)"
+msgstr ""
+
+#: js/before-after-block.js:11
+msgid "Image Comparison"
+msgstr ""
+
+#: js/before-after-block.js:58
+msgid "Image Settings"
+msgstr ""
+
+#: js/before-after-block.js:60
+msgid "Note: Images should have the same dimensions for best results"
+msgstr ""
+
+#: js/before-after-block.js:63
+msgid "Split Direction"
+msgstr ""
+
+#: js/before-after-block.js:66
+msgid "Horizontal Split"
+msgstr ""
+
+#: js/before-after-block.js:67
+msgid "Vertical Split"
+msgstr ""
+
+#: js/before-after-block.js:72
+msgid "Border Radius"
+msgstr ""
+
+#: js/before-after-block.js:112
+msgid "Select 'Before' Image"
+msgstr ""
+
+#: js/before-after-block.js:143
+msgid "Select 'After' Image"
+msgstr ""
+
+#: js/incorrect-usage-editor.js:110
+msgid "Incorrect Usage Style"
+msgstr ""
+
+#: js/incorrect-usage-editor.js:118
+msgid "Line Color"
+msgstr ""
+
+#: js/incorrect-usage-editor.js:134
+msgid "Line Thickness"
+msgstr ""
+
+#: js/incorrect-usage-editor.js:147
+msgid "Line Opacity"
+msgstr ""
+
+#: js/toc-block.js:12
+#: js/toc-block.js:57
+msgid "Table of Contents"
+msgstr ""
+
+#: js/toc-block.js:37
+msgid "TOC Settings"
+msgstr ""
+
+#: js/toc-block.js:39
+msgid "Horizontal Layout"
+msgstr ""
+
+#: js/toc-block.js:49
+msgid "Heading Levels"
+msgstr ""
+
+#: js/toc-block.js:59
+msgid "Table of contents will be generated automatically"
+msgstr ""
