@@ -7,13 +7,14 @@
  * @package wpguidelines
  */
 
- // Load theme translations
+// Load child theme textdomain for translations
 function wpguidelines_load_theme_textdomain() {
-    load_child_theme_textdomain( 'wpguidelines', get_stylesheet_directory() . '/languages' );
+    load_child_theme_textdomain( 'twentytwentyfour', get_stylesheet_directory() . '/languages' );
+    load_theme_textdomain( 'wpguidelines', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'wpguidelines_load_theme_textdomain' );
 
-// Guidelines category for block patterns
+ // Guidelines category for block patterns
 function wpguidelines_register_pattern_categories() {
 	register_block_pattern_category( 'wpguidelines/guidelines', array( 
 		'label'       => __( 'Guidelines', 'wpguidelines' ),
@@ -72,7 +73,7 @@ function wpguidelines_enqueue_header_anchor_script() {
         wp_enqueue_script(
             'header-anchor',
             get_stylesheet_directory_uri() . '/js/header-anchor.js',
-            array( 'wp-blocks', 'wp-compose', 'wp-element', 'wp-editor', 'wp-components', 'wp-hooks', 'wp-data', 'wp-dom-ready', ),
+            array( 'wp-blocks', 'wp-compose', 'wp-element', 'wp-editor', 'wp-components', 'wp-hooks', 'wp-data', 'wp-dom-ready' ),
             '1.0',
             true
         );
@@ -99,8 +100,6 @@ function register_toc_block() {
             )
         )
     ));
-
-    wp_set_script_translations( 'guidelines-toc-block', 'wpguidelines' );
 }
 add_action('init', 'register_toc_block');
 
@@ -179,7 +178,7 @@ function wpguidelines_register_before_after_block() {
     wp_register_script(
         'before-after-block-editor',
         get_stylesheet_directory_uri() . '/js/before-after-block.js',
-        ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n']
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n')
     );
 
     wp_register_style(
@@ -202,8 +201,6 @@ function wpguidelines_register_before_after_block() {
             ]
         ]
     ]);
-
-    wp_set_script_translations( 'before-after-block-editor', 'wpguidelines' );
 }
 add_action( 'init', 'wpguidelines_register_before_after_block' );
 
@@ -265,3 +262,10 @@ function wpguidelines_enqueue_before_after_assets() {
     }
 }
 add_action('wp_enqueue_scripts', 'wpguidelines_enqueue_before_after_assets');
+
+// JS custom block translations
+function wpguidelines_load_script_translations() {
+    wp_set_script_translations( 'guidelines-toc-block', 'wpguidelines', get_stylesheet_directory() . '/languages' );
+    wp_set_script_translations( 'before-after-block-editor', 'wpguidelines', get_stylesheet_directory() . '/languages' );
+}
+add_action( 'enqueue_block_editor_assets', 'wpguidelines_load_script_translations', 100 );
