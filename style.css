@@ -18,8 +18,9 @@
     padding-left: 100vw;
     padding-right: 100vw;
 }
+
 .page {
-    overflow-x: hidden;
+    overflow-x: hidden; /* Fix for full-width group overflowing */
 }
 
 /* Fixed sidebar styles */
