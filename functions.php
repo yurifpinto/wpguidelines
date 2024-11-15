@@ -35,6 +35,39 @@ function wpguidelines_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wpguidelines_enqueue_scripts' );
 
+// Allow ttf and otf fonts
+function wpguidelines_font_correct_filetypes( $data, $file, $filename, $mimes, $real_mime ) {
+
+    if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
+        return $data;
+    }
+    
+    $wp_file_type = wp_check_filetype( $filename, $mimes );
+    
+    // Check for the file type you want to enable
+    if ( 'ttf' === $wp_file_type['ext'] ) {
+       $data['ext'] = 'ttf';
+       $data['type'] = 'font/ttf';
+    }
+    
+    if ( 'otf' === $wp_file_type['ext'] ) {
+        $data['ext'] = 'otf';
+        $data['type'] = 'font/otf';
+    }
+    
+    return $data;
+}
+add_filter( 'wp_check_filetype_and_ext', 'wpguidelines_font_correct_filetypes', 10, 5 );
+
+function allow_custom_mime_types( $mimes ) {
+    
+    $mimes['ttf'] = 'font/ttf';
+    $mimes['otf'] = 'font/otf';
+
+    return $mimes;
+}
+add_filter( 'upload_mimes', 'allow_custom_mime_types' );
+
  /*
  * Custom block styles
  */
