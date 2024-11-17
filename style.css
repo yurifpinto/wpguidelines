@@ -97,6 +97,7 @@
 .guidelines-toc .toc-item {
     display: block;
     color: inherit;
+    font-size: var(--wp--preset--font-size--small);
     text-decoration: none;
     padding: 0.5rem;
     position: relative; /* For absolute positioning of circle */
@@ -148,8 +149,8 @@
 }
 
 .guidelines-toc .toc-item:not(.level-1) {
-    line-height: 1rem;
-    color: --wp--preset--color--contrast-2;
+    line-height: .7rem;
+    opacity: 0.5;
 }
 
 /* Remove the previous hover state */
