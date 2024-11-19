@@ -24,10 +24,10 @@
 }
 
 /* Fixed sidebar styles */
-.wp-block-group.is-position-sticky:not(.has-background):has(.guidelines-toc) {
+/* .wp-block-group.is-position-sticky:not(.has-background):has(.guidelines-toc) {
     color: white;
     mix-blend-mode: difference;
-}
+} */
 
 /* Handle images and icons that shouldn't be inverted */
 .page-template-page-with-sidebar .wp-block-column .wp-block-group.is-position-sticky img,
@@ -42,7 +42,13 @@
 
 /* Table of contents block */
 .guidelines-toc {
+    position: relative;
     margin: 2rem 0;
+}
+
+.guidelines-toc.toc-has-dark-bg {
+    color: var(--wp--preset--color--base-2);
+    transition: color 0.3s ease;
 }
 
 .guidelines-toc .toc-toggle {
@@ -94,7 +100,7 @@
     gap: 0.5rem;
 }
 
-.guidelines-toc .toc-item {
+.guidelines-toc a.toc-item {
     display: block;
     color: inherit;
     font-size: var(--wp--preset--font-size--small);

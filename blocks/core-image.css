@@ -17,16 +17,8 @@
     z-index: 1 !important;
     transform-origin: center;
 
-    /* background: var(--incorrect-line-color);
-    height: var(--incorrect-line-thickness);
-    opacity: var(--incorrect-line-opacity); */
     opacity: 1;
 }
-
-/* .is-style-incorrect-x::before,
-.is-style-incorrect-x::after {
-    border-right: 2px solid red;
-} */
 
 .is-style-incorrect-line::before {
     width: 100%;
