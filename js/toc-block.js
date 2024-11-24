@@ -5,7 +5,6 @@ wp.domReady(function() {
     const { createElement: el } = wp.element;
     const { InspectorControls } = wp.blockEditor;
     const { PanelBody, RangeControl, ToggleControl } = wp.components;
-    const { select } = wp.data;
     const { __ } = wp.i18n;
 
     registerBlockType('guidelines/toc', {
@@ -20,13 +19,16 @@ wp.domReady(function() {
             isHorizontal: {
                 type: 'boolean',
                 default: false
+            },
+            collapseDepth: {
+                type: 'number',
+                default: 1
             }
         },
 
-        // This handles the editor view
         edit: function(props) {
             const { attributes, setAttributes } = props;
-            const { maxLevel, isHorizontal } = attributes;
+            const { maxLevel, isHorizontal, collapseDepth } = attributes;
             
             return el('div', 
                 { className: `guidelines-toc ${isHorizontal ? 'is-horizontal' : '' }`},
@@ -50,11 +52,18 @@ wp.domReady(function() {
                                 value: maxLevel,
                                 onChange: (value) => setAttributes({ maxLevel: value }),
                                 min: 1,
-                                max: 4
+                                max: 6
+                            }),
+                            !isHorizontal && el( RangeControl, {
+                                label: __( 'Collapse Depth' ),
+                                value: collapseDepth,
+                                onChange: (value) => setAttributes({ collapseDepth: value }),
+                                min: 1,
+                                max: 6,
+                                help: __( 'Level at which to start collapsing items', 'wpguidelines')
                             })
                         )
                     ),
-                    el('h2', { className: 'toc-title' }, __( 'Table of Contents', 'wpguidelines' )),
                     el('div', {className: 'toc-preview-message' }, 
                         __( 'Table of contents will be generated automatically', 'wpguidelines' )
                     )

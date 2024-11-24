@@ -1,0 +1,157 @@
+/* Table of contents block */
+
+.guidelines-toc {
+    margin: 2rem 0;
+}
+
+/* Dynamic text color based on BG */
+.guidelines-toc.toc-has-dark-bg {
+    color: var(--wp--preset--color--base-2);
+    transition: color 0.3s ease;
+}
+
+.guidelines-toc a.toc-link {
+    position: relative; /* For absolute positioning of indicator */
+    color: inherit;
+    font-size: var(--wp--preset--font-size--small);
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+/* Circle indicator */
+.guidelines-toc:not(.is-horizontal) .toc-link.node-name--H1::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px; /* Size of circle */
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s ease;
+}
+
+/* Show circle on active state */
+.guidelines-toc:not(.is-horizontal) .toc-link.node-name--H1.is-active-link::before,
+.guidelines-toc:not(.is-horizontal) .toc-list-item:has(.is-active-link) > .node-name--H1::before {
+    opacity: 0.5;
+}
+
+.guidelines-toc .toc-link:not(.node-name--H1) {
+    line-height: .7rem;
+    opacity: 0.6;
+}
+
+/* Horizontal layout styles */
+@media (min-width: 768px) {
+    .guidelines-toc.is-horizontal .toc-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .guidelines-toc.is-horizontal .toc-link {
+        border-left: none;
+        border-bottom: 1px solid transparent;
+        white-space: nowrap;
+    }
+    
+    .guidelines-toc.is-horizontal .toc-link:hover,
+    .guidelines-toc.is-horizontal .toc-link.active {
+        border-bottom-color: currentColor;
+    }
+
+    .wp-block-group.is-position-sticky:has(.guidelines-toc.is-horizontal) {
+        z-index: 2;
+    }
+}
+
+/* Mobile toggle */
+.guidelines-toc .toc-toggle {
+    display: none; /* Hidden by default on desktop */
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.guidelines-toc .toggle-icon {
+    float: right;
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.guidelines-toc .toggle-icon::before,
+.guidelines-toc .toggle-icon::after {
+    content: '';
+    position: absolute;
+    background-color: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.guidelines-toc .toggle-icon::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.guidelines-toc .toggle-icon::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.guidelines-toc .toc-toggle[aria-expanded="true"] .toggle-icon::after {
+    transform: translateX(-50%) rotate(90deg);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+    .guidelines-toc .toc-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        width: 100%;
+        background: none;
+        border: none;
+        color: currentColor;
+    }
+
+    .guidelines-toc .toggle-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Space between text and icon */
+    }
+
+    .guidelines-toc .toggle-text {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .guidelines-toc .toc-content {
+        display: none;
+        margin-top: 1rem;
+    }
+
+    .guidelines-toc .toc-toggle[aria-expanded="true"] + .toc-content {
+        display: flex;
+    }
+}
+
+ /* Hide "Menu" text on desktop */
+ @media (min-width: 769px) {
+    .guidelines-toc .toggle-text {
+        display: none;
+    }
+}
