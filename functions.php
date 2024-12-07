@@ -24,6 +24,7 @@ add_action( 'wp_enqueue_scripts', 'wpguidelines_enqueue_styles' );
 function wpguidelines_load_external() {
     require_once get_stylesheet_directory() . '/functions/toc-block.php';
     require_once get_stylesheet_directory() . '/functions/before-after-block.php';
+    require_once get_stylesheet_directory() . '/functions/pdf.php';
 }
 add_action('init', 'wpguidelines_load_external', 5); // Priority 5 ensures it loads early
 
