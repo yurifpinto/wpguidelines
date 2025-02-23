@@ -94,12 +94,6 @@ function wpguidelines_enqueue_block_styles() {
         'src'    => get_stylesheet_directory_uri() . '/css/core-image.css',
         'path'   => get_stylesheet_directory_uri().  '/css/core-image.css'
     ) );
-
-    wp_enqueue_block_style( 'core/site-logo', array(
-        'handle' => 'wpguidelines-block-logo',
-        'src'    => get_stylesheet_directory_uri() . '/css/core-site-logo.css',
-        'path'   => get_stylesheet_directory_uri() . '/css/core-site-logo.css'
-    ) );
 }
 add_action( 'after_setup_theme', 'wpguidelines_enqueue_block_styles' );
 
