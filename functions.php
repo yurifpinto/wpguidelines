@@ -24,7 +24,8 @@ add_action( 'wp_enqueue_scripts', 'wpguidelines_enqueue_styles' );
 function wpguidelines_load_external() {
     require_once get_stylesheet_directory() . '/functions/toc-block.php';
     require_once get_stylesheet_directory() . '/functions/before-after-block.php';
-    require_once get_stylesheet_directory() . '/functions/pdf.php';
+    require_once get_stylesheet_directory() . '/functions/typography-preview-block.php';
+    require_once get_stylesheet_directory() . '/functions/pdf.php';    
 }
 add_action('init', 'wpguidelines_load_external', 5); // Priority 5 ensures it loads early
 
@@ -117,5 +118,6 @@ add_action('wp_enqueue_scripts', 'wpguidelines_enqueue_header_anchor_script');
 function wpguidelines_load_script_translations() {
     wp_set_script_translations( 'guidelines-toc-block', 'wpguidelines', get_stylesheet_directory() . '/languages' );
     wp_set_script_translations( 'before-after-block-editor', 'wpguidelines', get_stylesheet_directory() . '/languages' );
+    wp_set_script_translations( 'typography-preview-block', 'wpguidelines', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'enqueue_block_editor_assets', 'wpguidelines_load_script_translations', 100 );
