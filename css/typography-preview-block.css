@@ -3,8 +3,10 @@
     line-height: 1.2;
     min-height: 1em;
     cursor: text;
-    color: var(--wp--preset--color--contrast);
+    /* color: var(--wp--preset--color--contrast); */
+    color: inherit;
     white-space: pre-wrap;
+    opacity: 1;
 }
 
 .typography-preview-block .preview-text:focus {
@@ -13,7 +15,8 @@
 
 .typography-preview-block .preview-text:empty::before {
     content: 'Click to edit text';
-    color: var(--wp--preset--color--contrast-3);
+    color: inherit;
+    opacity: 0.5;
 }
 
 .typography-preview-block .preview-text br {
@@ -33,7 +36,7 @@
 .control-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--wp--preset--color--contrast);
+    color: inherit;
     font-size: var(--wp--preset--font-size--small);
 }
 
@@ -41,7 +44,8 @@
     width: 100%;
     margin-bottom: 0.5rem;
     height: 6px;
-    background: var(--wp--preset--color--contrast-3);
+    color: inherit;
+    background: color-mix(in srgb, currentColor 20%, transparent);
     border-radius: 3px;
     appearance: none;
     -webkit-appearance: none;
@@ -54,7 +58,8 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--wp--preset--color--accent);
+    color: inherit;
+    background: currentColor;
     cursor: pointer;
     border: none;
 }
@@ -87,7 +92,7 @@
 .control-group span {
     display: inline-block;
     font-size: var(--wp--preset--font-size--small);
-    color: var(--wp--preset--color--contrast-2);
+    color: inherit;
 }
 
 .preview-text-input {
