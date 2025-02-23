@@ -1,0 +1,106 @@
+.typography-preview-block .preview-text {
+    margin: 0;
+    line-height: 1.2;
+    min-height: 1em;
+    cursor: text;
+    color: var(--wp--preset--color--contrast);
+    white-space: pre-wrap;
+}
+
+.typography-preview-block .preview-text:focus {
+    outline: none;
+}
+
+.typography-preview-block .preview-text:empty::before {
+    content: 'Click to edit text';
+    color: var(--wp--preset--color--contrast-3);
+}
+
+.typography-preview-block .preview-text br {
+    line-height: inherit;
+}
+
+.typography-controls {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.control-group {
+    flex: 1;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--wp--preset--color--contrast);
+    font-size: var(--wp--preset--font-size--small);
+}
+
+.control-group input[type="range"] {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    height: 6px;
+    background: var(--wp--preset--color--contrast-3);
+    border-radius: 3px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--wp--preset--color--accent);
+    cursor: pointer;
+    border: none;
+}
+
+    /* Firefox */
+    .control-group input[type="range"]::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--wp--preset--color--accent);
+        cursor: pointer;
+        border: none;
+    }
+
+/* Focus states */
+.control-group input[type="range"]:focus {
+    outline: none;
+}
+
+.control-group input[type="range"]:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 2px var(--wp--preset--color--base-2),
+                0 0 0 4px var(--wp--preset--color--accent);
+}
+
+    .control-group input[type="range"]:focus::-moz-range-thumb {
+        box-shadow: 0 0 0 2px var(--wp--preset--color--base-2),
+                    0 0 0 4px var(--wp--preset--color--accent);
+    }
+
+.control-group span {
+    display: inline-block;
+    font-size: var(--wp--preset--font-size--small);
+    color: var(--wp--preset--color--contrast-2);
+}
+
+.preview-text-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 60px;
+}
+
+.preview-text-input:focus {
+    outline: none;
+    border-color: var(--wp--preset--color--contrast-3);
+    box-shadow: 0 0 0 1px var(--wp--preset--color--contrast-3);
+}
