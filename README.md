@@ -1,5 +1,5 @@
-## WPGuidelines is a Wordpress theme built as a basis for brand guideline projects.
-It's based on the Twenty Twenty-four starter theme, so it has built-in support for the new, more intuitive site editor.
+## WPGuidelines is a Wordpress theme for brand guideline projects.
+Based on the Twenty Twenty-four starter theme, it has built-in support for the new, more intuitive site editor.
 This theme builds on that base with custom blocks, patterns and templates aimed at making the experience of building guidelines easy for designers, not just coders.
 
 ### Features
